@@ -5,14 +5,12 @@ function fetchVideos() {
         .then((res) => res.json())
         .then(json => {
             const response = JSON.parse(json);
-            console.log(response);
-            const root = response.root;
             const videos = response.videos;
 
             const videoList = [];
 
             for (let video of videos) {
-                videoList.push(makeVideoDiv(root, video));
+                videoList.push(makeVideoDiv(video));
             }
             const videosDiv = document.getElementById('videos');
             videosDiv.innerHTML = videoList.join('');
@@ -20,13 +18,24 @@ function fetchVideos() {
         .catch((err) => console.error(err));
 }
 
-function makeVideoDiv(root, video) {
-    const videoDiv = [`<div>`];
-    const videoDate = `<p>${video.split('-').slice(1).join('')}</p>`;
-    const playButton = `<button onclick="playVideo('${root}/${video}')">재생</button>`;
-    const downloadButton = `<button onclick="downloadVideo('${root}/${video}')">다운로드</button>`;
+function makeVideoDiv(video) {
+    const date = video.split('.')[0].split('-').splice(1, 3).join('-');
+    const videoDiv = [`<div id="${date}">`];
+    const videoDate = `<p>${date}</p>`;
+    const playButton = `<button onclick="playVideo('${video}')">재생</button>`;
+    const downloadButton = `<a href="/video/file/${video}">다운로드</a>`;
     const end = `</div>`;
 
     videoDiv.push(videoDate, playButton, downloadButton, end);
     return videoDiv.join('');
+}
+
+function playVideo(video) {
+    const date = video.split('.')[0].split('-').splice(1, 3).join('-');
+    const videoDiv = document.getElementById(date);
+
+    const videoPlayer = [`<video src="/video/player/${video}" autoplay controls></video>`];
+    const downloadButton = `<a href="/video/file/${video}">다운로드</a>`;
+    videoPlayer.push(downloadButton);
+    videoDiv.innerHTML = videoPlayer.join('');
 }

@@ -34,8 +34,8 @@ module.exports = function (express, app) {
     });
 
     router.get('/videos', function (req, res) {
+        const response = {};
         const root = '/var/opt/sunlapse';
-        const response = { root };
 
         try {
             const videos = fs.readdirSync(root);
