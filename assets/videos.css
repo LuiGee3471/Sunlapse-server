@@ -1,0 +1,29 @@
+video {
+    display: block;
+    width: 320px;
+    height: 180px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+button, .button {
+    border: 1px solid coral;
+    border-radius: 3px;
+    padding: 3px 8px;
+    font-size: 0.8em;
+    margin-top: 3px;
+    margin-right: 5px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button:hover, .button:hover {
+    background-color: rgb(255, 180, 90);
+}
+
+button:active, .button:active {
+    border-color: red;
+    outline: none;
+}

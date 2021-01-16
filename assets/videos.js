@@ -5,7 +5,7 @@ function fetchVideos() {
         .then((res) => res.json())
         .then(json => {
             const response = JSON.parse(json);
-            const videos = response.videos;
+            const videos = response.videos.reverse();
 
             const videoList = [];
 
@@ -23,7 +23,7 @@ function makeVideoDiv(video) {
     const videoDiv = [`<div id="${date}">`];
     const videoDate = `<p>${date}</p>`;
     const playButton = `<button onclick="playVideo('${video}')">재생</button>`;
-    const downloadButton = `<a href="/video/file/${video}">다운로드</a>`;
+    const downloadButton = `<a class="button" href="/video/file/${video}">다운로드</a>`;
     const end = `</div>`;
 
     videoDiv.push(videoDate, playButton, downloadButton, end);
@@ -35,7 +35,7 @@ function playVideo(video) {
     const videoDiv = document.getElementById(date);
 
     const videoPlayer = [`<video src="/video/player/${video}" autoplay controls></video>`];
-    const downloadButton = `<a href="/video/file/${video}">다운로드</a>`;
+    const downloadButton = `<a class="button" href="/video/file/${video}">다운로드</a>`;
     videoPlayer.push(downloadButton);
     videoDiv.innerHTML = videoPlayer.join('');
 }
