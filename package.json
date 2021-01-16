@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node bin/www"
+    "start": "node bin/www 1>> /var/log/sunlapse/server.log 2>> /var/log/sunlapse/server.err &"
   },
   "repository": {
     "type": "git",
