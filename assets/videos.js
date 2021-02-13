@@ -34,7 +34,7 @@ function playVideo(video) {
     const date = video.split('.')[0].split('-').splice(1, 3).join('-');
     const videoDiv = document.getElementById(date);
 
-    const videoPlayer = [`<video src="/video/player/${video}" autoplay controls></video>`];
+    const videoPlayer = [`<video src="/video/player/${video}" autoplay controls preload="none"></video>`];
     const downloadButton = `<a class="button" href="/video/file/${video}">다운로드</a>`;
     videoPlayer.push(downloadButton);
     videoDiv.innerHTML = videoPlayer.join('');
